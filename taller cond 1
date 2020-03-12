@@ -1,4 +1,5 @@
-; 1
+; 1;hola weys que mas ? ggg
+
 (define (mayor x y)
   (cond
     ((> x y) x)
