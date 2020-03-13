@@ -1,4 +1,4 @@
-; 1;hola weys que mas ? ggg
+; 1;
 
 (define (mayor x y)
   (cond
