@@ -366,7 +366,6 @@
 
 (define (principal)
   (begin
-    (define x (read))
-    (principalt x))) (principal)
-
-  
+    (display "Numero del ejercicio(1-20):")(define x (read))
+    (principalt x)))
+    (principal)
