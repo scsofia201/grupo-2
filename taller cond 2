@@ -358,21 +358,21 @@
     
     ;5
 ; en una tienda de viveres trabajan con los siguientes descuentos:
-; lunes; si la compra es mayor a 20000 en lactios el descuento es del 20%, 
+; lunes; si la compra es mayor a 20000 en lacteos el descuento es del 20%, 
 ;si es igual es del 15%, sino es del 10%
 ; si la compra es mayor a 50000 en carnes el descuento es del 50%
 ;si es igual es del 25%, sino es del 0%
 ; si la compra es mayor a 30000 en verduras el descuento es del 30%
 ;si es igual es del 20%, sino es del 15%
 
-; martes y miercoles; si la compra es mayor a 10000 en lactios el descuento es del 10%
+; martes y miercoles; si la compra es mayor a 10000 en lacteos el descuento es del 10%
 ;si es igual es del 5%, sino es del 1%
 ; si la compra es mayor a 65000 en carnes el descuento es del 65%
 ;si es igual es del 35%, sino es del 25%
 ; si la compra es mayor a 5000 en verduras el descuento es del 5%
 ;si es igual es del 4%, sino es del 2%
 
-; jueves y viernes; si la compra es mayor a 40000 en lactios el descuento es del 40%
+; jueves y viernes; si la compra es mayor a 40000 en lacteos el descuento es del 40%
 ;si es igual es del 30%, sino es del 20%
 ; si la compra es mayor a 20000 en carnes el descuento es del 20%
 ;si es igual es del 15%, sino es del 8%
@@ -459,6 +459,25 @@
 (display "con un valor total de: ")
 (preciomin v c l)
     ))
+    
+
+
+;principal
+ (define (problemas x)
+  (cond
+((= x 1) (principal1))
+((= x 2) (principal2))
+((= x 3) (principal3))
+((= x 4) (principal4))
+((= x 5) (principal5))
+    ))
+
+(define (principal)
+  (begin
+(display "digite el problema que quiere realizar: ")
+(define x (read))
+(problemas x)
+)) (principal)   
 
 
 
