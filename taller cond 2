@@ -355,6 +355,110 @@
     (display "Numero 5: ")(define f (read))
 
     (display "Numero final: ")(menormayor a b c d f)))
+    
+    ;5
+; en una tienda de viveres trabajan con los siguientes descuentos:
+; lunes; si la compra es mayor a 20000 en lactios el descuento es del 20%, 
+;si es igual es del 15%, sino es del 10%
+; si la compra es mayor a 50000 en carnes el descuento es del 50%
+;si es igual es del 25%, sino es del 0%
+; si la compra es mayor a 30000 en verduras el descuento es del 30%
+;si es igual es del 20%, sino es del 15%
+
+; martes y miercoles; si la compra es mayor a 10000 en lactios el descuento es del 10%
+;si es igual es del 5%, sino es del 1%
+; si la compra es mayor a 65000 en carnes el descuento es del 65%
+;si es igual es del 35%, sino es del 25%
+; si la compra es mayor a 5000 en verduras el descuento es del 5%
+;si es igual es del 4%, sino es del 2%
+
+; jueves y viernes; si la compra es mayor a 40000 en lactios el descuento es del 40%
+;si es igual es del 30%, sino es del 20%
+; si la compra es mayor a 20000 en carnes el descuento es del 20%
+;si es igual es del 15%, sino es del 8%
+; si la compra es mayor a 15000 en verduras el descuento es del 15%
+;si es igual es del 9%, sino es del 5%
+
+; determinar el dia mas economico para una compra x.
+
+
+(define (%v x v)
+  (cond
+  ((= x 1) (cond
+             ((< 30000 v) 0.7)
+             ((= 30000 v) 0.8)
+             (else 0.85)))
+  ((= x 2) (cond
+             ((< 5000 v) 0.95)
+            ((= 5000 v) 0.96)
+             (else 0.98) ))
+  ((= x 3) (cond
+             ((< 15000 v) 0.85)
+             ((= 15000 v) 0.91)
+             (else 0.95) )))
+  )
+
+(define (%l x l)
+  (cond
+  ((= x 1) (cond
+             ((< 20000 l) 0.8)
+             ((= 20000 l) 0.85)
+             (else 0.9)))
+  ((= x 2) (cond
+             ((< 10000 l) 0.9)
+             ((= 10000 l) 0.95)
+             (else 0.99) ))
+  ((= x 3) (cond
+             ((< 40000 l) 0.6)
+             ((= 40000 l) 0.7)
+             (else 0.8) )))
+  )
+
+(define (%c x c)
+  (cond
+  ((= x 1) (cond
+             ((< 50000 c) 0.5)
+             ((= 50000 c) 0.75)
+             (else 1)))
+  ((= x 2) (cond
+             ((< 65000 c) 0.35)
+             ((= 65000 c) 0.65)
+             (else 0.75) ))
+  ((= x 3) (cond
+             ((< 20000 c) 0.8)
+             ((= 20000 c) 0.85)
+             (else 0.92) )))
+  )
+
+
+(define (totalcompr v c l x)
+  (+ (* v (%v x v)) (* c (%c x c)) (* l (%l x l))))
+
+
+(define (preciomin v c l)
+  (men3 (totalcompr v c l 1) (totalcompr v c l 2) (totalcompr v c l 3) ))
+
+(define (díamin v c l)
+  (cond
+((= (preciomin v c l) (totalcompr v c l 1)) "lunes")
+((= (preciomin v c l) (totalcompr v c l 2)) "martes y miercoles")
+((= (preciomin v c l) (totalcompr v c l 3)) "jueves y viernes")
+
+    ))
+
+(define (principal5)
+  (begin
+(displayln "lo que se quiere comprar en verduras es de: ")
+(define v (read))
+(displayln "en carnes: ")
+(define c (read))
+(displayln "en lacteos: ")
+(define l (read))
+(display "el día mas economico: ")
+(displayln (díamin v c l))
+(display "con un valor total de: ")
+(preciomin v c l)
+    ))
 
 
 
