@@ -1,0 +1,364 @@
+;programa 3
+(define
+  (cantidad x)
+  (cond
+    ((>= x 1)
+     (begin (display (quotient x 20000))(displayln " billetes de $20.000, ")
+            (display (quotient (modulo x 20000) 10000))(displayln " billetes de $10.000")
+            (display (quotient (modulo (modulo x 20000) 10000)2000))(displayln " billetes de $2.000, ")
+            (display (quotient (modulo (modulo (modulo x 20000) 10000)2000) 1000))(displayln " billetes de $1.000, ")
+            (display (quotient (modulo (modulo (modulo (modulo x 20000) 10000)2000) 1000)200))(displayln " monedas de $200")
+            (display (cond
+                       ((<= (modulo (modulo (modulo (modulo (modulo (modulo x 20000) 10000)2000) 1000)200)100) 50) (floor  (/(modulo(modulo (modulo (modulo (modulo x 20000) 10000)2000) 1000)200)100)))
+                       ((>  (modulo (modulo (modulo (modulo (modulo (modulo x 20000) 10000)2000) 1000)200)100) 50) (ceiling(/(modulo(modulo (modulo (modulo (modulo x 20000) 10000)2000) 1000)200)100)))
+                       ))(display " monedas de $100")))
+
+    )
+  )
+(define
+  (principal3)
+  (display "Valor compra: ")(define x (read))
+  (display "debe pagar con:")
+  (newline)
+  (cantidad x)
+  )
+
+
+;programa 4
+;menores
+(define
+  (min2 a b)
+(cond 
+((< a b) a)
+((> a b) b)
+((= a b) a)
+))
+
+(define (men3 a b c)
+(cond
+((< (min2 a b)  c) (min2 a b))
+((> (min2 a b)  c) c )
+((= (min2 a b)  c) c)))
+
+(define (min4 m n o p) 
+  (cond
+    ((< (min2 m n)(min2 o p))(min2 m n))
+    ((< (min2 o p)(min2 m n))(min2 o p))
+    ((= (min2 o p)(min2 m n))(min2 o p))
+    ))
+(define (min5 a b c d f)
+(cond
+((> (min4 a b c d) f) f)
+((> f (min4 a b c d)) (min4 a b c d))
+((= (min4 a b c d) f) f)
+  )
+
+  )
+
+;mayores
+(define (max2 a b)
+  (cond
+    ((> a b) a)
+    ((> b a) b)
+    ((= a b) b)))
+
+(define (max3 a b c)
+  (cond
+    ((< (max2 a b) c) c)
+    ((< c (max2 a b)) (max2 a b))
+    ((= (max2 a b) c) c )))
+
+(define (max4 a b c d)
+  (cond
+    ((> (max2 a b)(max2 c d))(max2 a b))
+    ((> (max2 c d)(max2 a b))(max2 c d))
+    ((= (max2 c d)(max2 a b))(max2 c d))
+    ))
+
+
+(define
+(menormayor a b c d f)
+  (cond
+  ((= (min5 a b c d f) a)(cond
+                           ((= (max4 b c d f) b)(cond
+                                                  ((= (men3 c d f) c)(cond
+                                                                      ((= (max2 d f) d)f)
+                                                                      ((= (max2 d f) f)d)
+                                                                      ))
+                                                  ((= (men3 c d f) d)(cond
+                                                                      ((= (max2 c f) c)f)
+                                                                      ((= (max2 c f) f)c)
+                                                                      ))
+                                                  ((= (men3 c d f) f)(cond
+                                                                      ((= (max2 d c) d)c)
+                                                                      ((= (max2 d c) c)d)
+                                                                      ))))
+                           ((= (max4 b c d f) c)(cond
+                                                  ((= (men3 b d f) b)(cond
+                                                                      ((= (max2 d f) d)f)
+                                                                      ((= (max2 d f) f)d)
+                                                                      ))
+                                                  ((= (men3 b d f) d)(cond
+                                                                      ((= (max2 b f) b)f)
+                                                                      ((= (max2 b f) f)b)
+                                                                      ))
+                                                  ((= (men3 b d f) f)(cond
+                                                                      ((= (max2 d b) d)b)
+                                                                      ((= (max2 d b) b)d)
+                                                                      ))))
+                           ((= (max4 b c d f) d)(cond
+                                                  ((= (men3 b c f) b)(cond
+                                                                      ((= (max2 c f) c)f)
+                                                                      ((= (max2 c f) f)c)
+                                                                      ))
+                                                  ((= (men3 b c f) c)(cond
+                                                                      ((= (max2 b f) b)f)
+                                                                      ((= (max2 b f) f)b)
+                                                                      ))
+                                                  ((= (men3 b c f) f)(cond
+                                                                      ((= (max2 c b) c)b)
+                                                                      ((= (max2 c b) b)c)
+                                                                      ))))
+                           ((= (max4 b c d f) f)(cond
+                                                  ((= (men3 b c d) b)(cond
+                                                                      ((= (max2 c d) c)d)
+                                                                      ((= (max2 c d) d)c)
+                                                                      ))
+                                                  ((= (men3 b c d) c)(cond
+                                                                      ((= (max2 b f) b)f)
+                                                                      ((= (max2 b f) f)b)
+                                                                      ))
+                                                  ((= (men3 b c d) d)(cond
+                                                                      ((= (max2 c b) c)b)
+                                                                      ((= (max2 c b) b)c)
+                                                                      ))))))
+  ((= (min5 a b c d f) b)(cond
+                           ((= (max4 a c d f) a)(cond
+                                                  ((= (men3 c d f) c)(cond
+                                                                      ((= (max2 d f) d)f)
+                                                                      ((= (max2 d f) f)d)
+                                                                      ))
+                                                  ((= (men3 c d f) d)(cond
+                                                                      ((= (max2 c f) c)f)
+                                                                      ((= (max2 c f) f)c)
+                                                                      ))
+                                                  ((= (men3 c d f) f)(cond
+                                                                      ((= (max2 d c) d)c)
+                                                                      ((= (max2 d c) c)d)
+                                                                      ))))
+                           ((= (max4 a c d f) c)(cond
+                                                  ((= (men3 a d f) a)(cond
+                                                                      ((= (max2 d f) d)f)
+                                                                      ((= (max2 d f) f)d)
+                                                                      ))
+                                                  ((= (men3 a d f) d)(cond
+                                                                      ((= (max2 a f) b)f)
+                                                                      ((= (max2 a f) f)b)
+                                                                      ))
+                                                  ((= (men3 a d f) f)(cond
+                                                                      ((= (max2 d a) d)a)
+                                                                      ((= (max2 d a) a)d)
+                                                                      ))))
+                           ((= (max4 a c d f) d)(cond
+                                                  ((= (men3 a c f) b)(cond
+                                                                      ((= (max2 c f) c)f)
+                                                                      ((= (max2 c f) f)c)
+                                                                      ))
+                                                  ((= (men3 a c f) c)(cond
+                                                                      ((= (max2 a f) a)f)
+                                                                      ((= (max2 a f) f)a)
+                                                                      ))
+                                                  ((= (men3 a c f) f)(cond
+                                                                      ((= (max2 c a) c)a)
+                                                                      ((= (max2 c a) a)c)
+                                                                      ))))
+                           ((= (max4 a c d f) f)(cond
+                                                  ((= (men3 a c d) a)(cond
+                                                                      ((= (max2 c d) c)d)
+                                                                      ((= (max2 c d) d)c)
+                                                                      ))
+                                                  ((= (men3 a c d) c)(cond
+                                                                      ((= (max2 a d) a)d)
+                                                                      ((= (max2 a d) d)a)
+                                                                      ))
+                                                  ((= (men3 a c d) d)(cond
+                                                                      ((= (max2 c a) c)a)
+                                                                      ((= (max2 c a) a)c)
+                                                                      ))))))
+  ((= (min5 a b c d f) c)(cond
+                           ((= (max4 a b d f) a)(cond
+                                                  ((= (men3 b d f) b)(cond
+                                                                      ((= (max2 d f) d)f)
+                                                                      ((= (max2 d f) f)d)
+                                                                      ))
+                                                  ((= (men3 b d f) d)(cond
+                                                                      ((= (max2 b f) b)f)
+                                                                      ((= (max2 b f) f)b)
+                                                                      ))
+                                                  ((= (men3 b d f) f)(cond
+                                                                      ((= (max2 d b) d)b)
+                                                                      ((= (max2 d b) b)d)
+                                                                      ))))
+                           ((= (max4 a b d f) b)(cond
+                                                  ((= (men3 a d f) a)(cond
+                                                                      ((= (max2 d f) d)f)
+                                                                      ((= (max2 d f) f)d)
+                                                                      ))
+                                                  ((= (men3 a d f) d)(cond
+                                                                      ((= (max2 a f) a)f)
+                                                                      ((= (max2 a f) f)f)
+                                                                      ))
+                                                  ((= (men3 a d f) f)(cond
+                                                                      ((= (max2 d a) d)a)
+                                                                      ((= (max2 d a) a)d)
+                                                                      ))))
+                           ((= (max4 a b d f) d)(cond
+                                                  ((= (men3 a b f) a)(cond
+                                                                      ((= (max2 b f) b)f)
+                                                                      ((= (max2 b f) f)b)
+                                                                      ))
+                                                  ((= (men3 a b f) b)(cond
+                                                                      ((= (max2 a f) a)f)
+                                                                      ((= (max2 a f) f)a)
+                                                                      ))
+                                                  ((= (men3 a b f) f)(cond
+                                                                      ((= (max2 b a) b)a)
+                                                                      ((= (max2 b a) a)b)
+                                                                      ))))
+                           ((= (max4 a b d f) f)(cond
+                                                  ((= (men3 a b d) a)(cond
+                                                                      ((= (max2 b d) b)d)
+                                                                      ((= (max2 b d) d)b)
+                                                                      ))
+                                                  ((= (men3 a b d) b)(cond
+                                                                      ((= (max2 a d) a)d)
+                                                                      ((= (max2 a d) d)a)
+                                                                      ))
+                                                  ((= (men3 a b d) d)(cond
+                                                                      ((= (max2 b a) b)a)
+                                                                      ((= (max2 b a) a)b)
+                                                                      ))))))
+  ((= (min5 a b c d f) d)(cond
+                           ((= (max4 a b c f) a)(cond
+                                                  ((= (men3 b c f) b)(cond
+                                                                      ((= (max2 c f) c)f)
+                                                                      ((= (max2 c f) f)c)
+                                                                      ))
+                                                  ((= (men3 b c f) c)(cond
+                                                                      ((= (max2 b f) b)f)
+                                                                      ((= (max2 b f) f)b)
+                                                                      ))
+                                                  ((= (men3 b c f) f)(cond
+                                                                      ((= (max2 c b) c)b)
+                                                                      ((= (max2 c b) b)c)
+                                                                      ))))
+                           ((= (max4 a b c f) b)(cond
+                                                  ((= (men3 a c f) a)(cond
+                                                                      ((= (max2 c f) c)f)
+                                                                      ((= (max2 c f) f)c)
+                                                                      ))
+                                                  ((= (men3 a c f) c)(cond
+                                                                      ((= (max2 a f) a)f)
+                                                                      ((= (max2 a f) f)a)
+                                                                      ))
+                                                  ((= (men3 a c f) f)(cond
+                                                                      ((= (max2 c a) c)a)
+                                                                      ((= (max2 c a) a)c)
+                                                                      ))))
+                           ((= (max4 a b c f) c)(cond
+                                                  ((= (men3 a b f) a)(cond
+                                                                      ((= (max2 b f) b)f)
+                                                                      ((= (max2 b f) f)b)
+                                                                      ))
+                                                  ((= (men3 a b f) b)(cond
+                                                                      ((= (max2 a f) a)f)
+                                                                      ((= (max2 a f) f)a)
+                                                                      ))
+                                                  ((= (men3 a b f) f)(cond
+                                                                      ((= (max2 b a) b)a)
+                                                                      ((= (max2 b a) a)b)
+                                                                      ))))
+                           ((= (max4 a b c f) f)(cond
+                                                  ((= (men3 a b c) a)(cond
+                                                                      ((= (max2 b c) b)c)
+                                                                      ((= (max2 b c) c)b)
+                                                                      ))
+                                                  ((= (men3 a b c) b)(cond
+                                                                      ((= (max2 a c) a)c)
+                                                                      ((= (max2 a c) c)a)
+                                                                      ))
+                                                  ((= (men3 a b c) c)(cond
+                                                                      ((= (max2 b a) b)a)
+                                                                      ((= (max2 b a) a)b)
+                                                                      ))))))
+  ((= (min5 a b c d f) f)(cond
+                           ((= (max4 a b c d) a)(cond
+                                                  ((= (men3 b c d) b)(cond
+                                                                      ((= (max2 c d) c)d)
+                                                                      ((= (max2 c d) d)c)
+                                                                      ))
+                                                  ((= (men3 b c d) c)(cond
+                                                                      ((= (max2 b d) b)d)
+                                                                      ((= (max2 b d) d)b)
+                                                                      ))
+                                                  ((= (men3 b c d) d)(cond
+                                                                      ((= (max2 c b) c)b)
+                                                                      ((= (max2 c b) b)c)
+                                                                      ))))
+                           ((= (max4 a b c d) b)(cond
+                                                  ((= (men3 a c d) a)(cond
+                                                                      ((= (max2 c d) c)d)
+                                                                      ((= (max2 c d) d)c)
+                                                                      ))
+                                                  ((= (men3 a c d) c)(cond
+                                                                      ((= (max2 a d) a)d)
+                                                                      ((= (max2 a d) d)a)
+                                                                      ))
+                                                  ((= (men3 a c d) d)(cond
+                                                                      ((= (max2 c a) c)a)
+                                                                      ((= (max2 c a) a)c)
+                                                                      ))))
+                           ((= (max4 a b c d) c)(cond
+                                                  ((= (men3 a b d) a)(cond
+                                                                      ((= (max2 b d) b)d)
+                                                                      ((= (max2 b d) d)b)
+                                                                      ))
+                                                  ((= (men3 a b d) b)(cond
+                                                                      ((= (max2 a d) a)d)
+                                                                      ((= (max2 a d) d)a)
+                                                                      ))
+                                                  ((= (men3 a b d) d)(cond
+                                                                      ((= (max2 b a) b)a)
+                                                                      ((= (max2 b a) a)b)
+                                                                      ))))
+                           ((= (max4 a b c d) d)(cond
+                                                  ((= (men3 a b c) a)(cond
+                                                                      ((= (max2 b c) b)c)
+                                                                      ((= (max2 b c) c)b)
+                                                                      ))
+                                                  ((= (men3 a b c) b)(cond
+                                                                      ((= (max2 a c) a)c)
+                                                                      ((= (max2 a c) c)a)
+                                                                      ))
+                                                  ((= (men3 a b c) c)(cond
+                                                                      ((= (max2 b a) b)a)
+                                                                      ((= (max2 b a) a)b)
+                                                                      ))))))))
+
+
+(define (principal4)
+  (begin
+    (display "Numero 1: ")(define a (read))
+    (display "Numero 2: ")(define b (read))
+    (display "Numero 3: ")(define c (read))
+    (display "Numero 4: ")(define d (read))
+    (display "Numero 5: ")(define f (read))
+
+    (display "Numero final: ")(menormayor a b c d f)))
+
+
+
+
+
+
+                         
